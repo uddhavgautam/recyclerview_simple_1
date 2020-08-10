@@ -32,8 +32,8 @@
 package com.example.android.common.logger;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -41,6 +41,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
 /**
  * Simple fraggment which contains a LogView and uses is to output log data it receives
@@ -53,6 +56,7 @@ public class LogFragment extends Fragment {
 
     public LogFragment() {}
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
     public View inflateViews() {
         mScrollView = new ScrollView(getActivity());
         ViewGroup.LayoutParams scrollParams = new ViewGroup.LayoutParams(
@@ -82,6 +86,7 @@ public class LogFragment extends Fragment {
         return mScrollView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

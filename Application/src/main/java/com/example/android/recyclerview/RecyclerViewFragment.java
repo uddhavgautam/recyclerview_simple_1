@@ -17,14 +17,15 @@
 package com.example.android.recyclerview;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Demonstrates the use of {@link RecyclerView} with a {@link LinearLayoutManager} and a
@@ -33,6 +34,7 @@ import android.widget.RadioButton;
 public class RecyclerViewFragment extends Fragment {
 
     private static final String TAG = "RecyclerViewFragment";
+    //key to save LayoutManagerType using Bundle
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
@@ -47,9 +49,14 @@ public class RecyclerViewFragment extends Fragment {
     protected RadioButton mLinearLayoutRadioButton;
     protected RadioButton mGridLayoutRadioButton;
 
+    //get an independent RecyclerView. RecyclerView sets adapter
     protected RecyclerView mRecyclerView;
+    //get an independent Adapter. Adapter needs dataSet
     protected CustomAdapter mAdapter;
+    //get LayoutManager from RecyclerView
     protected RecyclerView.LayoutManager mLayoutManager;
+
+    //get independent data for recycler view
     protected String[] mDataset;
 
     @Override
@@ -75,7 +82,7 @@ public class RecyclerViewFragment extends Fragment {
         // elements are laid out.
         mLayoutManager = new LinearLayoutManager(getActivity());
 
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER; //default
 
         if (savedInstanceState != null) {
             // Restore saved layout manager type.
